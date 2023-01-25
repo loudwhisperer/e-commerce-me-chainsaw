@@ -7,17 +7,22 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 router.get('/', (req, res) => {
   // find all products
   // be sure to include its associated Category and Tag data
+  Product.findAll({ include: [Category, {model: Tag, through: ProductTag}] }).then((data) => res.json(data));
 });
 
 // get one product
 router.get('/:id', (req, res) => {
   // find a single product by its `id`
   // be sure to include its associated Category and Tag data
+  Product.findByPk(req.params.id, {
+    include: [Category, { model: Tag, through: ProductTag }],
+  }).then((data) => res.json(data));
 });
 
 // create new product
 router.post('/', (req, res) => {
   /* req.body should look like this...
+  literally use this as your body for the post just add quotes around everything in proper JSON
     {
       product_name: "Basketball",
       price: 200.00,
@@ -48,6 +53,15 @@ router.post('/', (req, res) => {
 });
 
 // update product
+/* req.body should look like this...
+  literally use this as your body for the post just add quotes around everything in proper JSON but change the name 
+    {
+      product_name: "Basketball",
+      price: 200.00,
+      stock: 3,
+      tagIds: [1, 2, 3, 4]
+    }
+  */
 router.put('/:id', (req, res) => {
   // update product data
   Product.update(req.body, {
@@ -91,6 +105,9 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
   // delete one product by its `id` value
+  Product.destroy({ where: { id: req.params.id } }).then((data) =>
+    res.json(data)
+  );
 });
 
 module.exports = router;
