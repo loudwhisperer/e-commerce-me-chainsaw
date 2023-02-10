@@ -14,7 +14,9 @@ The hardest hurdle for me to get over was routes through the api, especially whe
 
 ## Usage
 
-[![Watch the video](./assets/employee.png)](https://drive.google.com/file/d/1DYxfje6TeeZzOhwy2Q7g7kW-QWw-srbj/view)
+To use the application currently the user can go to postman, or insomnia as pictured in the video walkthrough below and add and take away data to their hearts content till the graphic user inter is up and running for it
+
+[![Watch the video](./assets/e-commerce.png)](https://drive.google.com/file/d/13gNRafHEmTrjwq6FgOzfVJggrmJmMwcY/view)
 
 ## License
 
